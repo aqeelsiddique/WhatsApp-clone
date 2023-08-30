@@ -1,8 +1,9 @@
 import { Dialog, Box, Typography, List, ListItem, styled } from "@mui/material";
-import React from "react";
+import { useContext } from "react";
 import { qrCodeImage } from "../../conctant/data";
 import { GoogleLogin } from "@react-oauth/google";
-import jwt_decode from 'jwt-decode'
+import jwt_decode from "jwt-decode";
+import { AccountContext } from "../../context/AccountProvider";
 const dialogcss = {
   height: "96%",
   marginTop: "12%",
@@ -44,18 +45,19 @@ const StyledList = styled(List)`
 `;
 
 const Loginpage = () => {
+  const { setAccount,showloginButton, setShowloginButton, setShowlogoutButton } = useContext(AccountContext);
   const onLoginSuccess = (res) => {
-    const decode = jwt_decode(res.credential)
+    const decode = jwt_decode(res.credential);
 
-    console.log(decode)
+    setAccount(decode);
   };
 
   const onLoginFailure = (res) => {
-    console.log('login failed', res)
+    console.log("login failed", res);
   };
 
   return (
-    <Dialog open={true} PaperProps={{ sx: dialogcss }}>
+    <Dialog open={true} PaperProps={{ sx: dialogcss }} hideBackdrop={true}>
       <Component>
         <Container>
           <Title>Use WhatsApp on your computer</Title>
@@ -71,7 +73,7 @@ const Loginpage = () => {
 
         <Box style={{ position: "relative" }}>
           <QRCOde src={qrCodeImage} alt="" />
-          <Box style = {{position: 'absolute', top:'50%'}}>
+          <Box style={{ position: "absolute", top: "50%" }}>
             <GoogleLogin onSuccess={onLoginSuccess} onError={onLoginFailure} />
           </Box>
         </Box>
