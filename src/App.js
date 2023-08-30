@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import {AppBar, Box, Toolbar, styled} from "@mui/material"
+
+
+import Messeneger from "./components/Messeneger";
+import Loginpage from "./components/acount/Loginpage";
+
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
+
+
 
 function App() {
+  const clientId = "590059928752-df6pvh4viq5oakp2sc8kvp8ocplhg9mg.apps.googleusercontent.com"
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GoogleOAuthProvider  clientId = {clientId}>
+
+  
+    <Messeneger />
+    </GoogleOAuthProvider>
+  
   );
 }
 
