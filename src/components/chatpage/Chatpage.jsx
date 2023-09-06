@@ -23,16 +23,19 @@ const Leftside = styled(Box)`
 `;
 
 const Rightside = styled(Box)`
-width: 73%;
-min-width: 300px;
-height: 100%;
-border-left: 1px solid rgba(0, 0, 0, 0.14);
+  width: 34%;
+  min-width: 300px;
+  height: 100%;
+  border-left: 1px solid rgba(0, 0, 0, 0.14);
 `;
 
 const Chatpage = () => {
   return (
-    <Dialog open={true} PaperProps={{ sx: dialogStyle }} hideBackdrop={true}>
-      <Compnonent>
+    <Dialog 
+    open={true} 
+    PaperProps={{ sx: dialogStyle }}
+    maxWidth={'md'}
+>      <Compnonent>
         <Rightside>
           <Chatmenu />
         </Rightside>
