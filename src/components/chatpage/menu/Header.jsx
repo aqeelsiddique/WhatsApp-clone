@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
+import { useContext, useState } from 'react';
+
 import {
   Chat as MessageIcon,
   MoreVert,
@@ -7,6 +9,10 @@ import {
   Restore,
 } from "@mui/icons-material";
 import { emptyProfilePicture } from "../../../conctant/data";
+import Headermenu from "./Headermenu";
+import { AccountContext } from '../../../context/AccountProvider';
+import InfoDrawer from "../../drawer/Drawer";
+
 
 const Componenet = styled(Box)`
   height: 44px;
@@ -28,25 +34,36 @@ const Wrapper = styled(Box)`
     margin-top: 3px;
   }
 `;
-const QRCOde = styled("img")({
+const Image = styled("img")({
   height: 40,
   width: 40,
   borderRadius: "50%",
 });
 
 const Header = () => {
+  const [openDrawer, setOpenDrawer] = useState(false);
+
+  const { account } = useContext(AccountContext);
+  
+  const toggleDrawer = () => {
+      setOpenDrawer(true);
+  }
+
+
   return (
     <>
       <Componenet>
-        <QRCOde src={emptyProfilePicture} alt="" />
+                <Image src={account.picture} onClick={() => toggleDrawer()} />
 
         <Wrapper>
           <People />
           <Restore />
           <MessageIcon />
-          <MoreVert />
+          <Headermenu />
         </Wrapper>
       </Componenet>
+      <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
+
     </>
   );
 };
