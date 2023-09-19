@@ -1,6 +1,7 @@
 import { styled, Drawer, Box, Typography } from '@mui/material';
 import { ArrowBack } from '@mui/icons-material';
 import { emptyProfilePicture } from '../../conctant/data';
+import Profile from './Profile';
 
 //components
 
@@ -47,11 +48,14 @@ const InfoDrawer = ({ open, setOpen }) => {
         >
             <Header>
                 <ArrowBack onClick={() => setOpen(false)} />
-                <Text>hello from</Text>
+                <Text>Profile</Text>
             </Header>
+
             <Component>
-                {emptyProfilePicture && <emptyProfilePicture />}
+                <Profile />
             </Component>
+            
+
         </Drawer>
     );
 }

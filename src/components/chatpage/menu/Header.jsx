@@ -59,7 +59,7 @@ const Header = () => {
           <People />
           <Restore />
           <MessageIcon />
-          <Headermenu />
+          <Headermenu setOpenDrawer ={setOpenDrawer}/>
         </Wrapper>
       </Componenet>
       <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
