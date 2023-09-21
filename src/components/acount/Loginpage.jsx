@@ -3,6 +3,8 @@ import { useContext } from "react";
 import { qrCodeImage } from "../../conctant/data";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
+import { addUser } from '../../service/api';
+
 import { AccountContext } from "../../context/AccountProvider";
 const dialogcss = {
   height: "96%",
@@ -46,10 +48,15 @@ const StyledList = styled(List)`
 
 const Loginpage = () => {
   const { setAccount,showloginButton, setShowloginButton, setShowlogoutButton } = useContext(AccountContext);
-  const onLoginSuccess = (res) => {
+  const onLoginSuccess = async (res) => {
     const decode = jwt_decode(res.credential);
 
+
     setAccount(decode);
+
+    await addUser(decode);
+
+
   };
 
   const onLoginFailure = (res) => {
